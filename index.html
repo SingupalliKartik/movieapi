@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie search app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <h2>Movie App</h2>
+        <div class="search"><input type="text" name="search" id="search" placeholder="Search Movie">
+            <a href="#searching"> <button class="fa-solid fa-magnifying-glass" id="searchBtn"></button></a>
+        </div>
+        <div class="right">
+            <div class="watchlist">
+                <i class="fa-solid fa-bookmark"></i>
+                <a href="">
+                    <h4>Watchlist</h4>
+                </a>
+            </div>
+            <div class="signin">
+                <a href="">
+                    <h3>Sign-in</h3>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section class="swaper">
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+            
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination">...</div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        </div>
+    </section>
+    <section class="top">
+        <h3>Top Rated</h3>
+        <div class="listz">
+
+
+        </div>
+    </section>
+    
+    <section class="cat">
+        <h3>Categories </h3>
+        <div class="list1">
+            <button onclick="bygen('Action') ">Action</button>
+            <button onclick="bygen('Horror')">Horror</button>
+            <button onclick="bygen('Romance')">Romance</button>
+            <button onclick="bygen('Adventure')">Adventure</button>
+            <button onclick="bygen('Drama')">Drama</button>
+            <button onclick="bygen('Comedy')">Comedy</button>
+        </div>
+        <div class="items">
+
+        </div>
+    </section>
+    <section class="Upcoming">
+        <h3>Upcoming</h3>
+        <div class="ulist">
+        </div>
+    </section>
+    <section id="searching">
+        <div id="searchq">
+            <h3 id="namee"></h3>
+            <div class="itemsa">
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        setTimeout(() => {
+            
+       
+        const swiper = new Swiper('.swiper', {
+            
+    autoplay: {
+                    delay: 3000,
+              
+                disableOnIntraction: false,
+            },
+
+
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    }, 5000);
+        const slider = document.querySelector(".items");
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener("mousedown", (e) => {
+            isDown = true;
+            slider.classList.add("active");
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener("mouseleave", () => {
+            isDown = false;
+            slider.classList.remove("active");
+        });
+        slider.addEventListener("mouseup", () => {
+            isDown = false;
+            slider.classList.remove("active");
+        });
+        slider.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; //scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+            
+        });
+        
+    </script>
+     <script src="script.js"></script>
+     <script src="https://kit.fontawesome.com/59fa151417.js" crossorigin="anonymous"></script>
+    
+
+</body>
+
+</html>
